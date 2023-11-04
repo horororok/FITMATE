@@ -41,5 +41,6 @@ public class UserServiceImpl implements UserService {
 	public int idCheck(String id) {
 		return userDao.selectId(id);
 	}
+	
 
 }

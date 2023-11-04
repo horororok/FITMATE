@@ -36,15 +36,13 @@ public class UserController {
 	@PostMapping("/signup")
 	public ResponseEntity<?> signup(User user){
 		int result = uService.signup(user);
-		
-		//회원가입할 때 이미 기존 회원중에 같은 아이디 있으면 회원가입 못하게 알림 (프론트에서 데이터 받고 거기서 처리?)
-		
-		
+	
 		if(result == 0)
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		return new ResponseEntity<Integer>(result, HttpStatus.CREATED);
 	}
 	
+	//아이디 중복 확인
 	@GetMapping("/idcheck/{id}")
 	public ResponseEntity<?> userIdCheck(@PathVariable String id){
 		int result = uService.idCheck(id);
