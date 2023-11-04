@@ -22,6 +22,7 @@ public interface BoardService {
 	//글 삭제
 	int deleteBoard(int id);
 	
+	//검색조건에 맞는 글만 반환
 	List<Board> search(SearchCondition condition);
 	
 }

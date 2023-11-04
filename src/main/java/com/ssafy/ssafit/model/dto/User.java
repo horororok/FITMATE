@@ -10,6 +10,8 @@ public class User {
 	private String phone_num;
 	private int age;
 	private String nickname;
+	private String profile_url;
+	private String self_intro;
 	private int gender; //0: 남자, 1: 여자
 	private String fav_sport;
 	private String sido_add;
@@ -19,8 +21,8 @@ public class User {
 	public User() {	}
 
 	public User(int user_seq, String id, String password, String name, String email, String created_at,
-			String phone_num, int age, String nickname, int gender, String fav_sport, String sido_add, String goo_add,
-			String dong_myun_add) {
+			String phone_num, int age, String nickname, String profile_url, String self_intro, int gender,
+			String fav_sport, String sido_add, String goo_add, String dong_myun_add) {
 		this.user_seq = user_seq;
 		this.id = id;
 		this.password = password;
@@ -30,6 +32,8 @@ public class User {
 		this.phone_num = phone_num;
 		this.age = age;
 		this.nickname = nickname;
+		this.profile_url = profile_url;
+		this.self_intro = self_intro;
 		this.gender = gender;
 		this.fav_sport = fav_sport;
 		this.sido_add = sido_add;
@@ -109,6 +113,22 @@ public class User {
 		this.nickname = nickname;
 	}
 
+	public String getProfile_url() {
+		return profile_url;
+	}
+
+	public void setProfile_url(String profile_url) {
+		this.profile_url = profile_url;
+	}
+
+	public String getSelf_intro() {
+		return self_intro;
+	}
+
+	public void setSelf_intro(String self_intro) {
+		this.self_intro = self_intro;
+	}
+
 	public int getGender() {
 		return gender;
 	}
@@ -153,8 +173,9 @@ public class User {
 	public String toString() {
 		return "User [user_seq=" + user_seq + ", id=" + id + ", password=" + password + ", name=" + name + ", email="
 				+ email + ", created_at=" + created_at + ", phone_num=" + phone_num + ", age=" + age + ", nickname="
-				+ nickname + ", gender=" + gender + ", fav_sport=" + fav_sport + ", sido_add=" + sido_add + ", goo_add="
-				+ goo_add + ", dong_myun_add=" + dong_myun_add + "]";
+				+ nickname + ", profile_url=" + profile_url + ", self_intro=" + self_intro + ", gender=" + gender
+				+ ", fav_sport=" + fav_sport + ", sido_add=" + sido_add + ", goo_add=" + goo_add + ", dong_myun_add="
+				+ dong_myun_add + "]";
 	}
 
 	
