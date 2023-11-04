@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,7 @@ public class UserController {
 	@Autowired
 	private UserService uService;
 	
-	@GetMapping("users")
+	@GetMapping("/users")
 	public ResponseEntity<?> userList(){
 		List<User> users = uService.getUserList();
 		
@@ -32,19 +33,26 @@ public class UserController {
 		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 	}
 	
-	@PostMapping("signup")
+	@PostMapping("/signup")
 	public ResponseEntity<?> signup(User user){
 		int result = uService.signup(user);
-		
-		//회원가입할 때 이미 기존 회원중에 같은 아이디 있으면 회원가입 못하게 알림 (프론트에서 데이터 받고 거기서 처리?)
-		
-		
+	
 		if(result == 0)
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		return new ResponseEntity<Integer>(result, HttpStatus.CREATED);
 	}
 	
-	@PostMapping("login")
+	//아이디 중복 확인
+	@GetMapping("/idcheck/{id}")
+	public ResponseEntity<?> userIdCheck(@PathVariable String id){
+		int result = uService.idCheck(id);
+		
+		if(result == 1) 
+			return new ResponseEntity<Boolean>(false, HttpStatus.NOT_ACCEPTABLE);
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+	}
+	
+	@PostMapping("/login")
 	public ResponseEntity<?> login(User user, HttpSession session){
 		User temp = uService.login(user);
 		
@@ -56,7 +64,7 @@ public class UserController {
 		return new ResponseEntity<String>(temp.getName(), HttpStatus.OK);
 	}
 	
-	@GetMapping("logout")
+	@GetMapping("/logout")
 	public ResponseEntity<Void> logout(HttpSession session){
 		session.invalidate();
 		

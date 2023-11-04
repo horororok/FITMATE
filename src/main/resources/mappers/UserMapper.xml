@@ -12,6 +12,12 @@
 		VALUES (#{id}, #{password}, #{name}, #{email}, #{phone_num}, #{nickname}, #{gender})
 	</insert>
 	
+	<select id="selectId" parameterType="string" resultType="int">
+		SELECT count(*)
+		FROM user
+		WHERE id = #{id}
+	</select>
+	
 	<select id="selectOne" parameterType="string" resultType="User">
 		SELECT *
 		FROM user

@@ -52,6 +52,7 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.delete(id);
 	}
 
+	//검색 조건에 맞는 목록 반환
 	@Override
 	public List<Board> search(SearchCondition condition) {
 		return boardDao.search(condition);
