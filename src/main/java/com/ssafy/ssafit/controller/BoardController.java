@@ -49,7 +49,7 @@ public class BoardController {
 	public ResponseEntity<?> write(Board board){
 		int result = bService.writeBoard(board);
 		if(result == 0)
-			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
 	
@@ -58,7 +58,7 @@ public class BoardController {
 	public ResponseEntity<?> update(Board board){
 		int result = bService.modifyBoard(board);
 		if(result == 0)
-			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<Void>(HttpStatus.NOT_MODIFIED);
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
 	
@@ -68,8 +68,7 @@ public class BoardController {
 		int result = bService.deleteBoard(id);
 		
 		if(result == 0)
-			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
-	
 }
