@@ -8,8 +8,8 @@
 	</select>
 	
 	<insert id="insertUser" parameterType="User">
-		INSERT INTO user (id, password, name, email, phone_num, gender)
-		VALUES (#{id}, #{password}, #{name}, #{email}, #{phone_num}, #{gender})
+		INSERT INTO user (id, password, name, email, phone_num, nickname, gender)
+		VALUES (#{id}, #{password}, #{name}, #{email}, #{phone_num}, #{nickname}, #{gender})
 	</insert>
 	
 	<select id="selectOne" parameterType="string" resultType="User">
