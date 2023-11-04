@@ -17,6 +17,8 @@ import com.ssafy.ssafit.model.dto.SearchCondition;
 import com.ssafy.ssafit.model.dto.Board;
 import com.ssafy.ssafit.model.service.BoardService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/api-board")
 public class BoardController {
@@ -24,7 +26,7 @@ public class BoardController {
 	@Autowired
 	private BoardService bService;
 	
-	//목록 가져오기 (검색 조건 있으면 검색조건에 맞는 리스트만 가져오기, 없으면 전체 글 가져오기)
+	@ApiOperation(value = "게시글 목록 보기", notes = "검색 조건에 맞는 목록 반환, 조건 없으면 전체 목록 보기")
 	@GetMapping("/board")
 	public ResponseEntity<?> list(SearchCondition condition){
 		List<Board> list = bService.search(condition);
@@ -33,8 +35,7 @@ public class BoardController {
 		return new ResponseEntity<List<Board>>(list, HttpStatus.OK);
 	}
 	
-	
-	//글 상세보기
+	@ApiOperation(value = "글 상세 보기", notes="해당 글 상세 보기")
 	@GetMapping("/board/{id}")
 	public ResponseEntity<?> detail(@PathVariable int id){
 		Board board = bService.getBoard(id);
@@ -43,8 +44,7 @@ public class BoardController {
 		return new ResponseEntity<Board>(board, HttpStatus.OK);
 	}
 	
-	
-	//글 등록하기
+	@ApiOperation(value = "글 등록 하기", notes = "게시글 하나 등록 하기")
 	@PostMapping("/board")
 	public ResponseEntity<?> write(Board board){
 		int result = bService.writeBoard(board);
@@ -53,7 +53,7 @@ public class BoardController {
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
 	
-	//글 수정하기
+	@ApiOperation(value = "글 수정하기", notes = "글 제목,내용 수정 (작성자 수정 불가)")
 	@PutMapping("/board")
 	public ResponseEntity<?> update(Board board){
 		int result = bService.modifyBoard(board);
@@ -62,7 +62,7 @@ public class BoardController {
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
 	
-	//글 삭제하기
+	@ApiOperation(value = "글 삭제하기", notes = "해당 글 삭제하기")
 	@DeleteMapping("/board/{id}")
 	public ResponseEntity<?> delete(@PathVariable int id){
 		int result = bService.deleteBoard(id);
